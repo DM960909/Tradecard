@@ -1,0 +1,11 @@
+<h1>Card Details</h1>
+    <ul>
+        <% data.data.forEach(card => { %>
+            <li>
+                <img src=<%=card.image_url %>>
+                <strong>ID:</strong> <%= card.card_id %><br>
+                <strong>Name:</strong> <%= card.name %><br>
+                
+            </li>
+        <% }); %>
+    </ul>

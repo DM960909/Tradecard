@@ -1,0 +1,148 @@
+
+
+body {
+  
+  margin: 0;
+}
+
+
+
+
+
+/* Footer */
+.footer {
+  margin: 4rem;
+  text-align: center;
+}
+
+
+.btn {
+  font-size: 18px;
+  padding: 15x 25px;
+  border-radius: 8px;
+  font-weight: 500;
+  
+}
+.container-strip {
+  background-color: #e1e3f9; 
+}
+.run-animate {
+  
+  animation: animate 12s linear;
+  
+
+
+
+}
+@keyframes animate {
+  0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(310%);
+    }
+}
+
+.navbar-brand img {
+  padding-right: 16px;
+  padding-bottom: 10px;
+}
+
+.navbar-brand span {
+  font-size: 24px;
+  font-weight: medium;
+  
+
+}
+
+
+
+
+
+
+
+
+
+a.nav-link {
+  margin-right: 8px 0;
+}
+
+.ms-3 {
+  margin-left: 0;
+}
+
+.py-3 {
+  background-color: #e1e3f9;
+}
+
+
+
+
+
+
+
+/*Section 2 */ 
+
+.info {
+  margin: 2rem 0;
+}
+
+
+/* Section 3 */ 
+
+.pt-3 {
+  background-color: rgb(246, 246, 246);
+}
+
+
+/* Contact.html */ 
+
+textarea.form-control {
+  height: 100%;
+}
+
+.form-main {
+
+  background-color: #e1e3f9;
+
+}
+
+.textarea {
+  width: 300px;
+  height: 50px;
+  line-height: 40px;
+}
+
+.contact-header {
+  text-align: center;
+}
+
+.reply-tag {
+  text-align: center;
+}
+
+
+
+/* Premium.html */ 
+
+.premium-banner-header {
+
+  background-color: #e1e3f9;
+
+}
+
+.img-container {
+
+
+  background-color: #e1e3f9;
+}
+
+
+.card-body {
+  background-color: #e1e3f9;
+
+}
+
+@import "~bootstrap/scss/bootstrap";
+
+

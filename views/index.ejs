@@ -1,0 +1,75 @@
+ 
+<div class="container-strip">
+  <div class="run-animate">
+    <img src="img/run-pokemon.gif" class="img-flud">
+  </div>
+</div> 
+ 
+ <!--Section-->
+  <section class="py-3 py-lg-5 py-xl-8">
+    <div class="container overflow-hidden">
+      <div class="row gy-5 gy-lg-0 align-items-lg-center justify-content-lg-between">
+        <div class="col-12 col-lg-6 order-1 order-lg-0"> <!--Responsiveness-->
+          <h1 class="display-3 fw-bold mb-3">Your dream collection is just one click away</h1>
+          <p class="fs-4 mb-5">Swap, Collect, Conquer: Elevate your Pokémon card game with our trading platform.</p>
+          <div class="d-grid gap-2 d-lg-flex">
+            <% if (status == "loggedIn") { %> <!-- CAN DO THIS TO SHOW OTHER THINGS LIKE ADD CARD IF USER == LOGGED IN -->
+              <button type="button" class="btn btn-dark bsb-btn-3xl rounded-pill"><a href="/profile">Profile</a></button>
+              <button type="button" class="btn btn-dark bsb-btn-3xl rounded-pill"><a href="/logout">Logout</a></button>
+          <% } else { %>
+            <button type="button" class="btn btn-dark bsb-btn-3xl rounded-pill"><a href="/login">Login</a></button>
+            <button type="button" class="btn btn-dark bsb-btn-3xl rounded-pill"><a href="/register">Sign Up</a></button>
+          <% } %> 
+            
+          </div>
+        </div>
+        <div class="col-12 col-lg-5">
+          <div class="position-relative">
+            <img class="img-fluid position-relative z-2" loading="lazy" src="img/poke-pixel.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--END-->
+
+  <!--Section-->
+  <section>
+  <div class="container px-">
+    <div class="row gy-5 gy-lg-0 align-items-lg-center justify-content-lg-between">
+      <div class="col-12 col-lg-4">
+        <div class="position-relative">
+          <img class="img-fluid position-relative z-2" loading="lazy" src="img/pika-card.png" alt="">
+        </div>
+      </div>
+      <div class="mt-5 col-lg-4 float-lg-end"> <!--Responsiveness-->
+        <h2 class=" fw-normal mt-5">Keep track of your collection</h2>
+        <p class="fs-6 mb-5">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est, nisi repellat. Ipsa dolorem, eos vero, cum harum reprehenderit nam hic, neque dolores tempora facere qui pariatur quas commodi mollitia nulla!.</p>
+        <div class="d-grid gap-2 d-lg-flex float-lg-end">
+          <button type="button" class="btn btn-primary bsb-btn-3xl rounded-pill">Explore Now</button>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+  <!--END-->
+
+  <section class="py-3 py-lg-5 py-xl-8 pt-3">
+    <div class="container overflow-hidden">
+      <div class="row gy-5 gy-lg-0 align-items-lg-center justify-content-lg-between">
+        <div class="col-12 col-lg-4 order-1 order-lg-0"> <!--Responsiveness-->
+          <h1 class="display-3 fw-bold mb-3">Your dream collection is just one click away</h1>
+          <p class="fs-4 mb-5">Swap, Collect, Conquer: Elevate your Pokémon card game with our trading platform.</p>
+          <div class="d-grid gap-2 d-lg-flex">
+            <button type="button" class="btn btn-dark bsb-btn-3xl rounded-pill">Explore Now</button>
+            <button type="button" class="btn btn-outline-dark bsb-btn-3xl rounded-pill">Free Trial</button>
+          </div>
+        </div>
+        <div class="col-12 col-lg-4">
+          <div class="position-relative">
+            <img class="img-fluid position-relative z-2" loading="lazy" src="img/poke-dex.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
