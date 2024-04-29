@@ -94,6 +94,8 @@ router.get('/profile/viewCollection', loggedIn,(req, res) => {
 });
 
 
+
+
 router.get('/cardDetails', async (req, res) => {
     let r_id = req.query.card;
     let endp = `http://localhost:4000/pokemon/${r_id}`;
@@ -183,6 +185,75 @@ router.post('/profile/addToCollection', loggedIn, (req, res) => {
     
     
 });
+
+
+
+
+
+router.post('/profile/newBlogPost', loggedIn, (req, res) => {
+    if (req.user) {
+        let userId = req.user.id;
+        let title = req.body.title;
+        let content = req.body.content;
+
+        console.log("User ID:", userId);
+        console.log("Title:", title);
+        console.log("Content:", content);
+
+        const insertData = {
+            userID: userId,
+            title: title,
+            content: content
+        };
+        console.log('Data to be inserted:', insertData);
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        };
+        let endpoint = "http://localhost:4000/pokemon/newBlogPost";
+
+        axios.post(endpoint, insertData, config)
+            .then((response) => {
+                let insertedid = response.data.respObj.id;
+                let resmessage = response.data.respObj.message;
+                console.log('Response received:', response.data);
+                console.log(`${resmessage}${insertedid}`);
+                res.redirect('/profile'); // Redirect to /profile
+            })
+
+            .catch((err) => {
+                console.log('Error occurred:', err.message);
+                res.status(500).send('Internal Server Error');
+            });
+    } else {
+        res.redirect('/login'); // Redirect to login page if not logged in
+    }
+});
+
+router.get('/profile/blogPosts', loggedIn, (req, res) => {
+    if (req.user) {
+        let userID = req.user.id;
+        console.log('User ID:', userID);
+        let ep = `http://localhost:4000/profile/blogPosts?userID=${userID}`;
+
+        axios.get(ep)
+            .then((response) => {
+                let bdata = response.data;
+                console.log('Received data from API:', bdata);
+                res.render('myBlogs', { nametext: 'card', bdata, user: req.user });
+            })
+            .catch((error) => {
+                console.error('Error fetching data from API:', error);
+                res.status(500).send('Internal Server Error');
+            });
+    } else {
+        res.redirect('/login'); // Redirect to login page if not logged in
+    }
+});
+
+
 
 
 router.get('/profile/addTocollection', loggedIn, (req, res) => {
