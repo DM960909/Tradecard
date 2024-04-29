@@ -53,17 +53,23 @@ router.get('/profile', loggedIn, (req, res) => {
 
 
 router.get('/cards', (req, res) => {
-    let ep = `http://localhost:4000/pokemon/`;
+    let sortOrder = req.query.sortOrder; // Get the sort order from the query parameter
 
-    axios.get(ep).then((response) => {
-        let bdata =response.data;
-        res.render('cards', {nametext : 'card', bdata});
-        
+    let ep = `http://localhost:4000/pokemon`;
+    if (sortOrder) {
+        ep += `?sortOrder=${sortOrder}`; // Append sort order parameter if provided
+    }
 
-    });
-    
+    axios.get(ep)
+        .then((response) => {
+            let bdata = response.data;
+            res.render('cards', { nametext: 'card', bdata });
+        })
+        .catch((error) => {
+            console.error('Error fetching data from API:', error);
+            res.status(500).send('Internal Server Error');
+        });
 });
-
 router.get('/profile/viewCollection', loggedIn,(req, res) => {
     if (req.user) {
         let userID = req.user.id;
@@ -175,7 +181,9 @@ router.post('/profile/addToCollection', loggedIn, (req, res) => {
     }
 
     
+    
 });
+
 
 router.get('/profile/addTocollection', loggedIn, (req, res) => {
 
@@ -195,6 +203,73 @@ router.get('/profile/addTocollection', loggedIn, (req, res) => {
     
     
 });
+
+
+router.post('/profile/removeFromCollection', loggedIn, (req, res) => {
+    if (req.user) {
+        let getID = req.body.selectedCard;
+        let userId = req.user.id;
+        
+        console.log('Name received from query parameter:', getID);
+        const deleteData = {
+            cardID: getID,
+            userID: userId
+            
+        };
+        console.log('Data to be Deleted:', deleteData);
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        };
+        let endpoint = "http://localhost:4000/pokemon/removeFromCollection";
+
+        console.log('Making POST request to endpoint:', endpoint);
+        axios.post(endpoint, deleteData, config)
+        .then((response) => {
+            if (response.data.success) {
+                // If the deletion was successful, display the success message
+                let resmessage = response.data.message;
+                console.log('Response received:', resmessage);
+                res.send(resmessage);
+            } else {
+                // If there was an error in the deletion, handle it accordingly
+                console.error('Deletion failed:', response.data.message);
+                res.status(500).send('Deletion failed');
+            }
+        })
+        .catch((err) => {
+            console.error('Error occurred:', err.message);
+            res.status(500).send('Internal Server Error');
+        });
+        } else {
+            res.redirect('/login'); // Redirect to login page if not logged in
+        }
+
+    
+    
+});
+
+router.get('/profile/removeFromcollection', loggedIn, (req, res) => {
+
+    if (req.user) {
+        let userID = req.user.id;
+        let ep = `http://localhost:4000/pokemon/userCollection?userID=${userID}`;
+
+        axios.get(ep).then((response) => {
+            let bdata =response.data;
+            res.render('removeFromCollection', {nametext : 'card', bdata, user: req.user}); //checking if user is loggedIn 
+            
+
+        });
+    } else {
+        res.redirect('/login'); // Redirect to login page if not logged in
+    }
+    
+    
+});
+
 
 
 router.get('/add', (req, res)=> { 

@@ -1,3 +1,24 @@
+<form id="sortForm" action="/cards" method="get">
+  <label for="sortOrder">Sort Order:</label>
+  <select name="sortOrder" id="sortOrder" onchange="submitForm()">
+      <option></option>
+      <option value="">Default</option>
+      <option value="asc">Ascending</option>
+      <option value="desc">Descending</option>
+  </select>
+</form>
+
+<script>
+  function submitForm() {
+      var sortOrder = document.getElementById("sortOrder").value;
+      if (sortOrder !== "") {
+          document.getElementById("sortForm").action = "/cards?sortOrder=" + sortOrder;
+      } else {
+          document.getElementById("sortForm").action = "/cards";
+      }
+      document.getElementById("sortForm").submit();
+  }
+</script>
 
 
 <div class="container">
@@ -10,6 +31,7 @@
             <div class="card-body text-center">
               <h5 class="card-title"><%= card.name %></h5>
               <p class="card-text"><%= card.description %></p>
+              <p class="card-price">$<%=card.price%></p>
               <a class="btn btn-dark shadow-none" href="/cardDetails?card=<%= card.card_id %>">View Card</a>
             </div>
           </div>
