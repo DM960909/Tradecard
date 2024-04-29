@@ -1,0 +1,9 @@
+<form action="/profile/addToCollection" method="POST">
+    <label for="cardSelect">Select a Card:</label>
+    <select name="selectedCard" id="cardSelect">
+        <% bdata['data'].forEach((card) => { %>
+            <option value="<%= card.card_id %>"><%= card.name %></option>
+        <% }); %>
+    </select>
+    <button type="submit">Add to Collection</button>
+</form>

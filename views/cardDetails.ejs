@@ -1,11 +1,32 @@
-<h1>Card Details</h1>
+ 
+<script src="/public/js/addButton.js"></script>
+
+<h1 class="text-center pt-4 pb-5">Card Details</h1>
     <ul>
         <% data.data.forEach(card => { %>
-            <li>
-                <img src=<%=card.image_url %>>
-                <strong>ID:</strong> <%= card.card_id %><br>
-                <strong>Name:</strong> <%= card.name %><br>
-                
-            </li>
+            <div class="row">
+                <!-- Image column -->
+                <div class="col-md-4">
+                  <img src="<%= card.image_url %>" alt="Card Image" class="img-fluid" style="max-width: 75%;">
+                </div>
+              
+                <!-- List items column -->
+                <div class="col-md-8">
+                  <ul class="list-group">
+                    <strong>Name:</strong> <%= card.name %><br>
+                    <strong>Description:</strong> <%= card.description %><br>
+                    <strong>HP:</strong> <%= card.hp %><br>
+                    <strong>Attack:</strong> <%= card.attack %><br>
+                    <strong>Defense:</strong> <%= card.defense %><br>
+                    <strong>Ability:</strong> <%= card.ability_name%><br>
+                    <!-- NEED TO ADD HERE A USER LOGIN CHECK!-->
+                    
+                    
+                    <!-- Add more list items as needed -->
+                  </ul>
+                  <button type="button"  class="btn btn-dark mt-5 add-card-btn" data-card-id="<%= card.card_id %>">Add card to Collection</button>
+                </div>
+              </div>
+            
         <% }); %>
     </ul>

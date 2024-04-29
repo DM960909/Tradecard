@@ -9,8 +9,5 @@ const db = mysql.createConnection({
     database: "Pokemon2",
     port: 8889
 
-});
-
-
-
+})
 module.exports =  db;

@@ -16,7 +16,7 @@ const PORT = 5000 || process.env.PORT;  // for posting online - look into this
 
 
 
-app.use(express.static('public')); //easier to access ejs pages
+
 
 //templating engine
 app.use(expressLayout);
@@ -33,6 +33,8 @@ app.use(express.urlencoded({extended: true}));
 
 app.use('/', require('./server/routes/main'));
 app.use("/js", express.static(__dirname + "/public/js"))
+app.use(express.static(__dirname + '/public'))
+
 
 
 connection.connect((err) => {
@@ -47,5 +49,7 @@ app.use("/api", require("./server/models/auth"));
 app.listen(PORT, ()=> {
     console.log(`listening on ${PORT}`);
 });
+
+module.exports = app;
 
 

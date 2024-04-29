@@ -1,19 +1,18 @@
 <main class = "content px-3 py-4">
     <div class="container-fluid">
         <div class = "mb-3">
-            <h3 class="fs-4 text-center">Profile Dashboard</h3>
+            <h3 class="fs-4">Profile Dashboard</h3>
             <div class="row">
                 <div class="col-12d col-md-4">
                     <div class="card border-0">
                         <div class="card-body py-4">
-                            <h3 class="mb-3 text-center">My Cards</h3>
+                            <h5 class="mb-3 text-center">My Cards</h5>
                             <div class="flex one ">
                                 
                                     
-                                <a href="/profile/viewCollection" class="btn btn-dark shadow-none d-flex justify-content-md-center">View Collection</a>
-                                <a href="/profile/addTocollection" class="btn btn-dark shadow-none d-flex justify-content-md-center mt-4">Add to Collection</a>
+                                        <input name="nameField" type="text" placeholder="Title">
                                    
-                                    
+                                    <input type="submit" value="add pokemon">
                                 </form>
                     
                                    
