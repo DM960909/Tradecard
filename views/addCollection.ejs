@@ -1,9 +1,69 @@
-<form action="/profile/addToCollection" method="POST">
-    <label for="cardSelect">Select a Card:</label>
-    <select name="selectedCard" id="cardSelect">
-        <% bdata['data'].forEach((card) => { %>
-            <option value="<%= card.card_id %>"><%= card.name %></option>
-        <% }); %>
-    </select>
-    <button type="submit">Add to Collection</button>
-</form>
+<div class="container">
+    <form action="/pokemon/add" method="POST" class="pokemon-form">
+        <div class="form-group mt-4">
+            <label for="nameField">Name:</label>
+            <input type="text" class="form-control mt-4" name="nameField" id="nameField" required>
+        </div>
+
+        <div class="form-group">
+            <label for="descField">Description:</label>
+            <input type="text" class="form-control" name="descField" id="descField" required>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="typeField">Type:</label>
+                <select class="form-control" name="typeField" id="typeField" required>
+                    <% bdata['data'].forEach(card => { %>
+                        <option value="<%= card.type_id %>"><%= card.type_id %></option>
+                    <% }); %>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="abilityField">Ability:</label>
+                <select class="form-control" name="abilityField" id="abilityField" required>
+                    <% bdata['data'].forEach(card => { %>
+                        <option value="<%= card.ability_id %>"><%= card.ability_id %></option>
+                    <% }); %>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="hpField">HP:</label>
+                <input type="number" class="form-control" name="hpField" id="hpField" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="attackField">Attack:</label>
+                <input type="number" class="form-control" name="attackField" id="attackField" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="defenseField">Defense:</label>
+                <input type="number" class="form-control" name="defenseField" id="defenseField" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="priceField">Price:</label>
+            <input type="number" class="form-control" name="priceField" id="priceField" required>
+        </div>
+
+        <div class="form-group">
+            <label for="imageField">Image URL:</label>
+            <input type="text" class="form-control" name="imageField" id="imageField" required>
+        </div>
+
+        <div class="form-group">
+            <label for="genField">Generation:</label>
+            <select class="form-control" name="genField" id="genField" required>
+                <% bdata['data'].forEach(card => { %>
+                    <option value="<%= card.generation_id %>"><%= card.generation_id %></option>
+                <% }); %>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-dark mt-4 mb-4">Add Pokémon</button>
+    </form>
+</div>
+

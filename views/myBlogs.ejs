@@ -5,13 +5,13 @@
             <div class="col-md-8 mb-4">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Post <%= parseInt(blogPost.post_id) %></h3>
+                        <h3>Post <%= parseInt(blogPost.post_id) %></h3> <!--Enables postId to be used as counter -->
                     </div>
                     <div class="card-body">
                         <h5 class="card-title"><%= blogPost.title %></h5>
-                        <hr> <!-- Divider -->
+                        <hr> 
                         <p class="card-text"><%= blogPost.content %></p>
-                        <hr> <!-- Divider -->
+                        <hr>
                         <p class="card-time">Created at: <%= blogPost.created_at %></p>
                     </div>
                 </div>

@@ -1,32 +1,56 @@
- 
-<script src="/public/js/addButton.js"></script>
+
 
 <h1 class="text-center pt-4 pb-5">Card Details</h1>
-    <ul>
-        <% data.data.forEach(card => { %>
-            <div class="row">
-                <!-- Image column -->
-                <div class="col-md-4">
-                  <img src="<%= card.image_url %>" alt="Card Image" class="img-fluid" style="max-width: 75%;">
-                </div>
-              
-                <!-- List items column -->
-                <div class="col-md-8">
-                  <ul class="list-group">
-                    <strong>Name:</strong> <%= card.name %><br>
-                    <strong>Description:</strong> <%= card.description %><br>
-                    <strong>HP:</strong> <%= card.hp %><br>
-                    <strong>Attack:</strong> <%= card.attack %><br>
-                    <strong>Defense:</strong> <%= card.defense %><br>
-                    <strong>Ability:</strong> <%= card.ability_name%><br>
-                    <!-- NEED TO ADD HERE A USER LOGIN CHECK!-->
-                    
-                    
-                    <!-- Add more list items as needed -->
-                  </ul>
-                  <button type="button"  class="btn btn-dark mt-5 add-card-btn" data-card-id="<%= card.card_id %>">Add card to Collection</button>
-                </div>
-              </div>
+<ul>
+    <% data.data.forEach(card => { %>
+        <div class="row">
+            <div class="col-md-4">
+              <img src="<%= card.image_url %>" alt="Card Image" class="img-fluid" style="max-width: 75%;">
+            </div>
             
-        <% }); %>
-    </ul>
+            <div class="col-md-8">
+              <ul class="list-group">
+                <strong class="fw-bold fs-6">Name:</strong> <%= card.name %><br>
+                <strong>Description:</strong> <%= card.description %><br>
+                <strong>HP:</strong> <%= card.hp %><br>
+                <strong>Attack:</strong> <%= card.attack %><br>
+                <strong>Defense:</strong> <%= card.defense %><br>
+                <strong>Ability:</strong> <%= card.ability_name%><br>
+                <!-- NEED TO ADD HERE A USER LOGIN CHECK to hide-->
+              </ul>
+
+              <% if (status == "loggedIn") { %> <!-- CAN DO THIS TO SHOW OTHER THINGS LIKE ADD CARD IF USER == LOGGED IN -->
+                <button type="button" class="btn btn-dark mt-5 add-card-btn" onclick="addToCollection('<%= card.card_id %>')">Add card to Collection</button>
+              <button type="button" class="btn btn-dark mt-5 add-card-btn" onclick="removeFromCollection('<%= card.card_id %>')">Remove from Collection</button>
+        
+            <% } else { %>
+              <button type="button" class="btn btn-dark bsb-btn-3xl rounded-pill"><a href="/login" class="link-light text-decoration-none">Login</a></button>
+              <button type="button" class="btn btn-dark bsb-btn-3xl rounded-pill"><a href="/register" class="link-light text-decoration-none">Sign Up</a></button>
+            <% } %> 
+            </div>
+          </div>
+    <% }); %>
+</ul>
+
+<!-- FORMS-->
+<form id="addToCollectionForm" action="/profile/addToCollection" method="POST" style="display: none;">
+    <input type="hidden" id="selectedCardToAdd" name="selectedCard">
+</form> 
+
+<form id="removeFromCollectionForm" action="/profile/removeFromCollection" method="POST" style="display: none;">
+    <input type="hidden" id="selectedCardToRemove" name="selectedCard">
+</form> <!-- Rermove-->
+
+<!--FORMS-->
+
+<script>
+    function addToCollection(cardId) {
+        document.getElementById("selectedCardToAdd").value = cardId;
+        document.getElementById("addToCollectionForm").submit();
+    }
+
+    function removeFromCollection(cardId) {
+        document.getElementById("selectedCardToRemove").value = cardId;
+        document.getElementById("removeFromCollectionForm").submit();
+    }
+</script>

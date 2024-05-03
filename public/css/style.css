@@ -1,18 +1,23 @@
 
 
-body {
-  
+html, body {
+  height: 100%;
   margin: 0;
+  padding: 0;
 }
 
 
+.container-strip {
 
+  background-color: #e1e3f9;
 
+}
 
 /* Footer */
 .footer {
   margin: 4rem;
   text-align: center;
+  flex-shrink: 0;
 }
 
 
@@ -38,7 +43,11 @@ body {
   0% {
       transform: translateX(-100%);
     }
+    90% {
+      transform: translateX(310%);
+    }
     100% {
+      opacity: 0;
       transform: translateX(310%);
     }
 }

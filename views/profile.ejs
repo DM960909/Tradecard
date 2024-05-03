@@ -1,60 +1,51 @@
-<main class = "content px-3 py-4">
+
+
+
+<main class="content px-3 py-4">
     <div class="container-fluid">
-        <div class = "mb-3">
+        <div class="mb-3">
             <h3 class="fs-4 text-center">Profile Dashboard</h3>
             <div class="row">
                 <div class="col-12d col-md-4">
                     <div class="card border-0">
-                        <div class="card-body py-4">
+                        <div class="card-body py-4 card-fixed-height"> 
                             <h3 class="mb-3 text-center">My Cards</h3>
-                            <div class="flex one ">
-                                
-                                    
+                            <div class="flex one">
                                 <a href="/profile/viewCollection" class="btn btn-dark shadow-none d-flex justify-content-md-center">View Collection</a>
-                                <a href="/profile/addTocollection" class="btn btn-dark shadow-none d-flex justify-content-md-center mt-4">Add to Collection</a>
-                                <a href="/profile/removeFromcollection" class="btn btn-dark shadow-none d-flex justify-content-md-center mt-4">Delete from Collection</a>
-                                   
-                                    
-                                </form>
-                    
-                                   
-                                </form>
-                    
-                            </div>
-                            <p class="mb-2 fw-bold"></p>
-                            <div clas="mb-0">
-                                <span class="badge text-success me-2"></span>
-                                
+                                <% if (user && user.id === 4) { %>
+                                    <a href="/profile/addToCollection" class="btn btn-dark shadow-none d-flex justify-content-md-center mt-4">Admin Add to Collection</a>
+                                <% } %>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-12d col-md-4">
                     <div class="card border-0">
-                        <div class="card-body py-4">
-                            <h5 class="mb-3 text-center">My Wishlist</h5>
-                            <p class="mb-2 fw-bold"></p>
-                            <div clas="mb-0">
-                                <span class="badge text-success me-2"></span>
-                                
-                            </div>
+                        <div class="card-body py-4 card-fixed-height">
+                            <h3 class="mb-3 text-center">Welcome <%=email%></h3> <!-- Custome email welcome -->
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            
                         </div>
                     </div>
                 </div>
                 <div class="col-12d col-md-4">
                     <div class="card border-0">
-                        <div class="card-body py-4">
-                            <h5 class="mb-3 text-center">Liked Cards</h5>
-                            <p class="mb-2 fw-bold"></p>
-                            <div clas="mb-0">
-                                <span class="badge text-success me-2"></span> 
-                            </div>
+                        <div class="card-body py-4 card-fixed-height"> 
+                            <h3 class="mb-3 text-center">Random PokeFact</h3>
+                            <p class="mb-2"><%= randomPokeFact %></p>
+                            <br>
+                            <br>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</main>
+
 
     <body>
         <div class="container mt-5">
@@ -66,7 +57,7 @@
                 </div>
                 <div class="card-body">
                   <form action="/profile/newBlogPost" method="POST">
-                    <div class="form-group">
+                    <div class="form-group mb-4">
                       <label for="title">Title</label>
                       <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" required>
                     </div>
@@ -74,12 +65,13 @@
                       <label for="content">Content</label>
                       <textarea class="form-control" id="content" name="content" rows="6" placeholder="Enter content" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-dark mt-4">Submit</button>
                   </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        
       </body>
 </main>

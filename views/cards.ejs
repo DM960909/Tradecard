@@ -1,14 +1,6 @@
-<form id="sortForm" action="/cards" method="get">
-  <label for="sortOrder">Sort Order:</label>
-  <select name="sortOrder" id="sortOrder" onchange="submitForm()">
-      <option></option>
-      <option value="">Default</option>
-      <option value="asc">Ascending</option>
-      <option value="desc">Descending</option>
-  </select>
-</form>
 
-<script>
+
+<script> //Handles sort asc or desc
   function submitForm() {
       var sortOrder = document.getElementById("sortOrder").value;
       if (sortOrder !== "") {
@@ -20,14 +12,53 @@
   }
 </script>
 
+<script> // Generation filter 
+  function submitFilter() {
+      var generation = document.getElementById('generation').value;
+      if(generation !== "") {
+        document.getElementById("filterForm").action = "/cards?generation=" + generation;
+      } else {
+        document.getElementById("filterForm").action = "/cards";
+      }
+      document.getElementById("filterForm").submit();
+  }
+</script>
+
 
 <div class="container">
-    <div class="cards-background">
+  <form id="sortForm" action="/cards" method="get" class="row g-3">
+    <div class="col-auto pt-4">
+      <label for="sortOrder" class="visually-hidden" >Sort Order:</label>
+      <select name="sortOrder" id="sortOrder" class="form-select" onchange="submitForm()">
+        <option selected>Sort Order...</option>
+        <option value="">Default</option>
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+      </select>
+    </div>
+  </form>
+  <div class="col-auto pt-4">
+  <form id="filterForm" action="/cards" method="GET">
+    <label for="generation" class="visually-hidden">Filter by Generation:</label>
+    <select id="generation" name="generation">
+        <option value="">All Generations</option>
+        <option value="1">1st Generation Set</option>
+        <option value="2">2nd Generation Set</option>
+        <option value="3">3rd Generation Set</option>
+       
+    </select>
+  </div>
+    
+    <button type="button" onclick="submitFilter()">Apply Filter</button>
+</form>
+
+<!--Display card rows -->
+    <div class="cards-background"> 
     <div class="row">
         <% bdata['data'].forEach((card) => { %>
-        <div class="col-lg-4 col-md-6 col-sm-12  mt-4">
-          <div class="card justify-content-md-center pt-4 h-100">
-            <img src="<%= card.image_url %>" class="card-img-top img-fluid mx-auto d-block pb-4" style="height: 300px; width: 300px;"  alt="...">
+        <div class="col-lg-3 col-md-4 col-sm-6 mt-4">
+          <div class="card justify-content-md-center pt-2 h-100 border-0 style=" style = "width:275px;">
+            <img src="<%= card.image_url %>" class="card-img-top img-fluid mx-auto d-block pb-4" style="height: 400px; width: 275px;"  alt="...">
             <div class="card-body text-center">
               <h5 class="card-title"><%= card.name %></h5>
               <p class="card-text"><%= card.description %></p>
